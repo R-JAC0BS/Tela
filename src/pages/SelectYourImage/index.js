@@ -13,7 +13,7 @@ export const Selectyourimage = ({navigation}) => {
          <View style = {styles.bodyContainer}>
         <View style = {styles.TextContainer}>
              <Text style  = {styles.textTitle}>Adicione algumas fotos do seu bar</Text>
-             <Text style = {styles.Subtitle}>Você precisará de cinco fotos para comçar. Você pode adicionar outras imagens ou fazer alterações mais tarde.</Text>
+             <Text style = {styles.Subtitle}>Você precisará de cinco fotos para começar. Você pode adicionar outras imagens ou fazer alterações mais tarde.</Text>
              <TouchableHighlight style = {styles.touch}>
              <View style = {styles.ButtonImage}>
                      <Text style = {{color: 'black', fontSize: 20,fontWeight: 'bold', }}onPress={() => navigation.navigate('choiseImage')}>

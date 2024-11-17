@@ -7,6 +7,7 @@ import { login } from "../services/authService";
 
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
+import Home from "../pages/Home";
 
 
 const AppStack = createNativeStackNavigator();

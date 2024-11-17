@@ -3,7 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { View, Text } from 'react-native';
 
 import { Perfil } from './pages/Perfil';
-import { Anunciar } from './pages/Anunciar';  // Já importado, mas não sendo utilizado aqui.
+import { Home } from './pages/Home';
 
 const Tab = createBottomTabNavigator();
 
@@ -12,8 +12,8 @@ export function Routes() {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          height: 85,
-          padding: 5,
+          height: 120,
+          paddingTop: 30,
           borderTopLeftRadius: 40,
           borderTopRightRadius: 40,
           overflow: 'hidden',
@@ -22,7 +22,7 @@ export function Routes() {
           shadowOffset: { width: 0, height: -2 },
           shadowOpacity: 0.1,
           shadowRadius: 15,
-          elevation: 10,
+          elevation: 40,
         },
         tabBarShowLabel: false,
         headerShown: false,
@@ -30,7 +30,7 @@ export function Routes() {
     >
       <Tab.Screen 
         name="pesquisar"
-        component={Perfil} // Mudar para "Pesquisar" se necessário
+        component={Home} // Mudar para "Pesquisar" se necessário
         options={{
           tabBarIcon: ({ focused, size, color }) => (
             <View style={{ alignItems: 'center' }}>
@@ -41,7 +41,8 @@ export function Routes() {
               />
               <Text style={{
                 color: focused ? "#FFBD2C" : "#000000",
-                fontSize: 12,
+                fontSize: 13,
+                width: '100%',
                 fontWeight: 'bold',
                 marginTop: 7,
               }}>Pesquisar</Text>
@@ -63,7 +64,8 @@ export function Routes() {
               />
               <Text style={{
                 color: focused ? "#FFBD2C" : "#000000",
-                fontSize: 12,
+                fontSize: 13,
+                width: '100%',
                 fontWeight: 'bold',
                 marginTop: 7,
               }}>Perfil</Text>

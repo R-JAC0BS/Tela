@@ -11,6 +11,7 @@ import Selectyourimage from './src/pages/SelectYourImage';
 import ChoiseImage from './src/pages/ChoiseImage';
 import CameraScreen from './src/pages/Camera';
 import Location from './src/pages/Location';
+import { Home } from './src/pages/Home';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,16 +21,20 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
          
-          <Stack.Screen
-            name="approute"
+          {/* <Stack.Screen
+            name="appRoutes"
             component={AppRoutes}
+            options={{ headerShown: false }}
+          />        */}
+          <Stack.Screen
+            name="routes"
+            component={Routes}
             options={{ headerShown: false }}
           />
            <Stack.Screen
-            name = "home"
-            component={Routes}
-            options={{ headerShown: false }}
-          
+            name = "Home"
+            component={Home}
+            options={{ headerShown: false }}          
           />
           <Stack.Screen
             name="anunciar"
