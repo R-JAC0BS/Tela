@@ -6,12 +6,25 @@ export function Home({navigation}) {
     return (
         <ScrollView style={styles.home}>
             <View style={styles.header}>
-                <View style={styles.headerComponent}>
-                    <Ionicons name="search-outline" size={20}></Ionicons>
-                    <TextInput style={styles.TextField}>Pesquisar</TextInput>                        
+                <View style={styles.headerComponent}>                    
+                    <TextInput style={styles.TextField}>
+                        <Ionicons name="search-outline" size={20}></Ionicons>
+                        Pesquisar
+                    </TextInput>                
+                    <TouchableOpacity>
+                        <Ionicons name="options-outline" size={24} marginLeft='10' top='8'></Ionicons>
+                    </TouchableOpacity>
                 </View>
 
-                <Ionicons name="options-outline" size={20}></Ionicons>
+                <View style={styles.buttons}>
+                    <TouchableOpacity>
+                        <Text style={styles.buttonText}>Todos</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Text style={styles.buttonText}>+ Populares</Text>
+                    </TouchableOpacity>
+                </View>                
             </View>
         </ScrollView>
       );
@@ -24,23 +37,30 @@ export function Home({navigation}) {
         backgroundColor: '#FFAF00',
       },
       TextField: {
-        marginTop: '20',
         backgroundColor: '#E9E9E9',
         width: '100%',
-        // marginRight: 20
+        borderRadius: 10,
+        padding: 10,
+        marginBottom: 10
       },
       header: {
         backgroundColor: 'white',
-        // alignItems: 'center',
+        alignItems: 'center',
         paddingBottom: 20,
         borderBottomLeftRadius: 40,
         borderBottomRightRadius: 40, 
-        padding: 20,
-        flexDirection: 'row'
+        padding: 40,
       },
       headerComponent: {
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center'
+      },
+      buttons: {
+        fontWeight: 'bold',
+        flexDirection: 'row',
+        gap: 100,
+        marginTop: 15
+      },
+      buttonText: {
+        fontWeight: 'bold'
       }
     });
