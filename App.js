@@ -12,6 +12,7 @@ import ChoiseImage from './src/pages/ChoiseImage';
 import CameraScreen from './src/pages/Camera';
 import Location from './src/pages/Location';
 import { Home } from './src/pages/Home';
+import {OneStar,TwoStar,ThreStar} from './src/components/Stars'
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +32,7 @@ export default function App() {
             component={Routes}
             options={{ headerShown: false }}
           />
+     
            <Stack.Screen
             name = "Home"
             component={Home}

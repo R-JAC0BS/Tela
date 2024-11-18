@@ -40,7 +40,7 @@ export function Perfil({navigation}) {
                 <Image source={require('../../assets/IMAGEM_FUNDO.png')} style={{width: 100, height: 100, flexShrink: 0, marginLeft: 60}}></Image>
             </TouchableOpacity>
     
-            <TouchableOpacity style={[styles.editarButton]}>
+            <TouchableOpacity style={[styles.editarButton]} onPress={() => navigation.navigate('star')}>
                 <Ionicons name="pencil" size={20} color="#000" style={{ marginRight: 8 }} />
                 <Text style={styles.editarButtonText}>Editar meus bares</Text>
             </TouchableOpacity>

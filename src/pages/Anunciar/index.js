@@ -11,7 +11,11 @@ export const Anunciar = ({navigation}) => {
     return (
         <View style={styles.Header}>
             <View style = {styles.Body}>
-                 <Text style = {styles.text}><AntDesign name="caretleft" size={24} color="black" />   É fácil anunciar no GooBar</Text>
+                 <Text style = {styles.text}>
+                    
+                   <TouchableOpacity> <AntDesign name="caretleft" size={24} color="black" onPress={() => {navigation.navigate('routes')}} /> </TouchableOpacity>   
+                    
+                    É fácil anunciar no GooBar</Text>
             </View>
             <View style = {styles.BodyTwo}>
                  <Text style = {styles.subText}>Aqui estão todas as etapas seguintes para você cadastrar seu bar.</Text>
