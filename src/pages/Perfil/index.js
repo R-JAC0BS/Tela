@@ -2,19 +2,16 @@ import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Login from '../auth/Login';
-import { logout } from '../../services/authService';
+import { useAuth } from "../../context/AuthContext";
 
 export function Perfil({navigation}) {
+
   const handleLogout = async () => {
-    const resultado = await logout();
-    if (!resultado.erro) {
-      navigation.reset({
-        index: 0,
-        approutes: [{ name: "Login" }], // Substitua "Login" pelo nome da tela de login
-      });
-    } else {
-      alert(resultado.mensagem); // Mostra o erro para o usuário
-    }
+    await AsyncStorage.removeItem("authToken");
+    await AsyncStorage.removeItem("userName");
+    setUser(null);
+    setToken(null);
+    navigation.navigate('Login');  // Redireciona para a tela de login
   };
 
     return (
@@ -65,7 +62,7 @@ export function Perfil({navigation}) {
                 <View style={styles.divisor} />
                 <TouchableOpacity style={styles.perfilConfigItem}>
                   <Ionicons name={"log-out"} size={30}color={'#000'} style={{marginRight: 8}}/>
-                    <Text style={styles.perfilConfigText} onPress={handleLogout}>Sair da conta</Text>
+                    <Text style={styles.perfilConfigText} onPress={() => navigation.navigate("Login")}>Sair da conta</Text>
                 </TouchableOpacity>
                 <View style={styles.divisor} />
             </View>

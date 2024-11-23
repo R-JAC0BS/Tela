@@ -6,7 +6,8 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  Alert,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
@@ -36,10 +37,6 @@ export default function Login({ navigation }) {
   
       setUser({ name });
       setToken(token);
-      // navigation.navigate({
-      //   index: 0,
-      //   routes: [{ name: "Home" }],
-      // });
     };
 
     return (

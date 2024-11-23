@@ -1,18 +1,45 @@
 import React from 'react';
 import { Text, View, StyleSheet,TouchableHighlight,Button,TextInput } from "react-native"
 import { useState, useEffect } from 'react';
+import axios from 'axios'; // Certifique-se de ter instalado o Axios
+import api from '../../../src/services/api';
 
-export const Description = ({navigation}) => {
+export const Description = ({route, navigation}) => {
 
     const MaxLenght = 500;
     const [numberDigito,setNumberDigito] = useState ('');
+    const { nomeBar } = route.params; // Recupera o nomeBar passado pela tela anterior
+    const [descricao,setDescricao] = useState ('');
+
+    const registerBar = async () => {
+        if (!descricao) {
+            Alert.alert('Erro', 'Por favor, preencha a descrição do bar.');
+            return;
+        }
+
+        try {
+            const payload = {
+                nomebar: nomeBar,
+                descricao,
+            };
+
+            const res = await api.post(`/Bar/registerBar`, payload);
+            console.log('Resposta do servidor:', res.data);
+            Alert.alert('Sucesso', 'Bar registrado com sucesso!');
+            navigation.navigate('selectyourimage'); // Navega para a próxima página
+        } catch (err) {
+            console.error(err);
+            Alert.alert('Erro', 'Não foi possível registrar o bar.');
+        }
+    };
+
     return (
         <View style = {styles.bodyContainer}>
         <View style = {styles.bodyContainer}>
         <View style = {styles.TextContainer}>
              <Text style  = {styles.textTitle}>Crie sua melhor descrição</Text>
              <Text style = {styles.Subtitle}>Explique o que seu bar tem de especial e seus diferenciais.</Text>
-             <TextInput style = {styles.textinput} maxLength={50} onChangeText={(newText) => {setNumberDigito(newText)}}></TextInput>
+             <TextInput style = {styles.textinput} maxLength={50} value={descricao} onChangeText={(setDescricao)}></TextInput>
              <Text>{MaxLenght - numberDigito.length} caracteres disponíveis</Text>
          </View>
         </View>
@@ -24,7 +51,7 @@ export const Description = ({navigation}) => {
              </TouchableHighlight>
              <TouchableHighlight style = {{left: 15}}>
              <View style={styles.button }>
-                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={() => navigation.navigate('selectyourimage')}>Avançar</Text>
+                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={registerBar}>Avançar</Text>
               </View>
              </TouchableHighlight>
         </View>

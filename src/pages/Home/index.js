@@ -70,14 +70,12 @@ export function Home({ navigation }) {
             <ScrollView style={styles.home}>
                 <View style={styles.homeT}>
                     {cards.map((bar, index) => (
-                        <TouchableOpacity key={index} style={styles.card}>
+                        <TouchableOpacity key={index} style={styles.card} onPress={() => navigation.navigate("CardInfo")}>
                             <Image source = {{uri: bar.imagemurl ? bar.imagemurl : noImage}} style={styles.cardImage}/>
                             <View style = {{flex: 1, paddingLeft: 5}}>
                                   <Text style={styles.cardTitle}>{bar.nomebar}</Text>
                                   <Text style={styles.cardDescription}>{bar.avaliacao} {Stars (bar.avaliacao)}</Text>
-                            </View>
-                      
-                      
+                            </View>                                            
                         </TouchableOpacity>
                     ))}
                 </View>

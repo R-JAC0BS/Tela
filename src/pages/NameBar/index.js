@@ -1,10 +1,21 @@
 import React from 'react';
 import { Text, View, StyleSheet,TouchableHighlight,Button,TextInput } from "react-native"
 import { useState,useEffect } from 'react';
+import { api } from '../../services/api';
 
 export const Namebar = ({navigation}) => {
     const MaxLenght = 50;
     const [numberDigito,setNumberDigito] = useState ('');
+    const [nomeBar, setNomeBar] = useState(''); // Campo para o nome do bar
+
+    const handleAdvance = async () => {
+        if (!nomeBar) {
+            Alert.alert('Erro', 'Por favor, preencha o nome do bar.');
+            return;
+        }
+
+        navigation.navigate('description', {nomeBar}); // Navega para a próxima página
+    };
 
 
     return (
@@ -13,7 +24,7 @@ export const Namebar = ({navigation}) => {
            <View style = {styles.TextContainer}>
                 <Text style  = {styles.textTitle}>Vamos dar um nome ao seu bar</Text>
                 <Text style = {styles.Subtitle}>Nomes curtos funcionam melhor. Não se preocupe, você poderá fazer alterações depois.</Text>
-                <TextInput style = {styles.textinput} maxLength={50} onChangeText={(newText) => {setNumberDigito(newText)}}></TextInput>
+                <TextInput style = {styles.textinput} maxLength={50} value={nomeBar} onChangeText={(setNomeBar)}></TextInput>
                 <Text>{MaxLenght - numberDigito.length} caracteres disponíveis</Text>
             </View>
            </View>
@@ -25,12 +36,10 @@ export const Namebar = ({navigation}) => {
                 </TouchableHighlight>
                 <TouchableHighlight style = {{left: 15}}>
                 <View style={styles.button }>
-                        <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'} }onPress={() => navigation.navigate ('description')}>Avançar</Text>
+                        <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'} }onPress={handleAdvance}>Avançar</Text>
                  </View>
                 </TouchableHighlight>
            </View>
-
-
         </View>
     )
 

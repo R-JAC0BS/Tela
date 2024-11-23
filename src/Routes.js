@@ -7,6 +7,7 @@ import { Home } from './pages/Home';
 
 const Tab = createBottomTabNavigator();
 
+
 export function Routes() {
   return (
     <Tab.Navigator
