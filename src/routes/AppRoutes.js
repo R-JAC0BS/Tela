@@ -7,10 +7,19 @@ import { login } from "../services/authService";
 
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
-import { Routes } from "../Routes"; // Suas rotas com tabs (home e perfil)
+import { Routes } from "../Routes"; 
 import { CardInfo } from "../pages/cardInfo";
 
-const AuthStack = createNativeStackNavigator();
+import { Anunciar } from '../../src/pages/Anunciar/index';
+import { Namebar } from '../../src/pages/NameBar';
+import { Description } from '../../src/pages/Description';
+import { Selectyourimage } from '../../src/pages/SelectYourImage';
+import { ChoiseImage } from '../../src/pages/ChoiseImage';
+import { CameraScreen } from '../../src/pages/Camera';
+import { Location } from '../../src/pages/Location';
+
+
+const Stack  = createNativeStackNavigator();
 
 
 const AppRoutes = () => {
@@ -56,18 +65,63 @@ const AppRoutes = () => {
 // Navegador de autenticação para Login/Register
 const AuthNavigator = () => {
   return (
-    <AuthStack.Navigator>
-      <AuthStack.Screen
+    <Stack.Navigator>
+      <Stack.Screen
         name="Login"
         component={Login}
         options={{ headerShown: false }}
       />
-      <AuthStack.Screen
+      <Stack.Screen
         name="Register"
         component={Register}
         options={{ headerShown: false }}
       />
-    </AuthStack.Navigator>
+       <Stack.Screen
+            name="routes"
+            component={Routes}
+            options={{ headerShown: false }}
+          />
+       <Stack.Screen
+            name = "Home"
+            component={Home}
+            options={{ headerShown: false }}          
+          />
+          <Stack.Screen
+            name="anunciar"
+            component={Anunciar}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="nomebar"
+            component={Namebar}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="description"
+            component={Description}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="selectyourimage"
+            component={Selectyourimage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="choiseImage"
+            component={ChoiseImage}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="camerascreen"
+            component={CameraScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="location"
+            component={Location}
+            options={{ headerShown: false }}
+          />
+    </Stack.Navigator>
   );
 };
 
