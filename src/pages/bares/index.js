@@ -7,13 +7,48 @@ import UnicBar from '../../json/unicBar.json'
 import { LinearGradient } from 'expo-linear-gradient';
 import MapView from 'react-native-maps';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import axios from 'axios';
 
 
-export const baresDescription = ({navigation}) => {
+export const baresDescription = ({navigation,route}) => {
+    const {id} = route.params;
+    const [barList, setBarList] = useState([]);
+
+    useEffect (() => {
+        console.log("ID recebido:", id);
+    },[id])
+
+    useEffect(() => {
+        const fetchBars = async () => {
+          try {
+            // Recupera o token do armazenamento local
+            const token = await AsyncStorage.getItem('authToken');
+            if (!token) {
+              console.error('Token não encontrado. Verifique o login do usuário.');
+              return;
+            }
+    
+            // Faz a requisição com o token no cabeçalho
+            const response = await axios.get(`https://goobarapi-2.onrender.com/Bar/barSelect/${id}`, {
+              headers: {
+                Authorization: `Bearer ${token}`, // Adiciona o token no cabeçalho
+              },
+            });
+    
+            console.log('Dados recebidos:', response.data);
+            setBarList(response.data);
+          } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+          }
+        };
+    
+        fetchBars(); // Chama a função para buscar os dados
+      }, [1]);
     return (
         <ScrollView style = {Styles.box} >
             
-            {UnicBar.map ((bar,index) =>(
+            {barList.map((bar,index) =>(
 
                 <ScrollView style = {Styles.box} key = {index} >
                     <TouchableOpacity style = {Styles.back} onPress={() => navigation.navigate('routes')}>

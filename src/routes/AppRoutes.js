@@ -17,6 +17,7 @@ import { Selectyourimage } from '../../src/pages/SelectYourImage';
 import { ChoiseImage } from '../../src/pages/ChoiseImage';
 import { CameraScreen } from '../../src/pages/Camera';
 import { Location } from '../../src/pages/Location';
+import {baresDescription}  from '../../src/pages/bares/index'
 
 
 const Stack  = createNativeStackNavigator();
@@ -112,7 +113,7 @@ const AppNavigator = () => {
       />
       <AppStack.Screen
         name="CardInfo"
-        component={CardInfo}
+        component={baresDescription}
         options={{ headerShown: false }}
       />
       <AppStack.Screen
