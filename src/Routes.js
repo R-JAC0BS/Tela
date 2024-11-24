@@ -5,7 +5,7 @@ import { View, Text } from 'react-native';
 import { Perfil } from './pages/Perfil';
 import { Home } from './pages/Home';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator(); 
 
 
 export function Routes() {

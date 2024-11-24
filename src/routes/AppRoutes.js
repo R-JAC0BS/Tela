@@ -10,7 +10,7 @@ import Register from "../pages/auth/Register";
 import { Routes } from "../Routes"; 
 import { CardInfo } from "../pages/cardInfo";
 
-import { Anunciar } from '../../src/pages/Anunciar/index';
+import { Anunciar } from '../../src/pages/Anunciar/';
 import { Namebar } from '../../src/pages/NameBar';
 import { Description } from '../../src/pages/Description';
 import { Selectyourimage } from '../../src/pages/SelectYourImage';
@@ -59,69 +59,86 @@ const AppRoutes = () => {
   }
 
   // Se o usuário está autenticado, redireciona para as rotas principais (com tabs)
-  return user ? <Routes /> : <AuthNavigator />;
+  return user ? <AppNavigator /> : <AuthNavigator />;
 };
 
-// Navegador de autenticação para Login/Register
+const AppStack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
+
+// Navegação para usuários autenticados
+const AppNavigator = () => {
+  return (
+    <AppStack.Navigator>
+      {/* Rotas principais */}
+      <AppStack.Screen
+        name="routes"
+        component={Routes} // Suas tabs: Home e Perfil
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="Anunciar"
+        component={Anunciar}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="nomebar"
+        component={Namebar}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="description"
+        component={Description}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="selectyourimage"
+        component={Selectyourimage}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="ChoiseImage"
+        component={ChoiseImage}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="CameraScreen"
+        component={CameraScreen}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="Location"
+        component={Location}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="CardInfo"
+        component={CardInfo}
+        options={{ headerShown: false }}
+      />
+      <AppStack.Screen
+        name="anunciar"
+        component={Anunciar}
+        options={{ headerShown: false }}
+      />
+    </AppStack.Navigator>
+  );
+};
+
+// Navegação para login e registro
 const AuthNavigator = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <AuthStack.Navigator>
+      <AuthStack.Screen
         name="Login"
         component={Login}
         options={{ headerShown: false }}
       />
-      <Stack.Screen
+      <AuthStack.Screen
         name="Register"
         component={Register}
         options={{ headerShown: false }}
       />
-       <Stack.Screen
-            name="routes"
-            component={Routes}
-            options={{ headerShown: false }}
-          />
-       <Stack.Screen
-            name = "Home"
-            component={Home}
-            options={{ headerShown: false }}          
-          />
-          <Stack.Screen
-            name="anunciar"
-            component={Anunciar}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="nomebar"
-            component={Namebar}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="description"
-            component={Description}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="selectyourimage"
-            component={Selectyourimage}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="choiseImage"
-            component={ChoiseImage}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="camerascreen"
-            component={CameraScreen}
-            options={{ headerShown: false }}
-          />
-          <Stack.Screen
-            name="location"
-            component={Location}
-            options={{ headerShown: false }}
-          />
-    </Stack.Navigator>
+    </AuthStack.Navigator>
   );
 };
 

@@ -52,6 +52,7 @@ export function CardInfo({ navigation }) {
 
             <View style={styles.stars}>
                 <Text>4,8</Text>
+                <Text>05</Text>
             </View>
         </ScrollView>
     )
