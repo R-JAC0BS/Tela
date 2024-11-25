@@ -10,6 +10,7 @@ export const Description = ({route, navigation}) => {
     const [numberDigito,setNumberDigito] = useState ('');
     const { nomeBar } = route.params; // Recupera o nomeBar passado pela tela anterior
     const [descricao,setDescricao] = useState ('');
+    const [UUID, setUUID] =useState ()
 
     const registerBar = async () => {
         const token = await AsyncStorage.getItem('authToken');
@@ -34,7 +35,7 @@ export const Description = ({route, navigation}) => {
                 },
               });
 
-
+            setUUID (res.data)
             console.log('Resposta do servidor:', res.data);
             Alert.alert('Sucesso', 'Bar registrado com sucesso!');
             navigation.navigate('selectyourimage'); // Navega para a próxima página
@@ -43,6 +44,11 @@ export const Description = ({route, navigation}) => {
             Alert.alert('Erro', 'Não foi possível registrar o bar.');
         }
     };
+
+    const nextTela = ()=> {
+        registerBar ()
+        navigation.navigate('selectyourimage', {UUID} );
+    }
 
     return (
         <View style = {styles.bodyContainer}>
@@ -62,7 +68,7 @@ export const Description = ({route, navigation}) => {
              </TouchableHighlight>
              <TouchableHighlight style = {{left: 15}}>
              <View style={styles.button }>
-                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={registerBar}>Avançar</Text>
+                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={nextTela}>Avançar</Text>
               </View>
              </TouchableHighlight>
         </View>

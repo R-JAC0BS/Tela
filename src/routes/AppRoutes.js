@@ -8,7 +8,7 @@ import { login } from "../services/authService";
 import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import { Routes } from "../Routes"; 
-import { CardInfo } from "../pages/cardInfo";
+
 
 import { Anunciar } from '../../src/pages/Anunciar/';
 import { Namebar } from '../../src/pages/NameBar';
