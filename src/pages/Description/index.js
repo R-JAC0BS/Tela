@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet,TouchableHighlight,Button,TextInput } from "react-native"
 import { useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios'; // Certifique-se de ter instalado o Axios
-import api from '../../../src/services/api';
 
 export const Description = ({route, navigation}) => {
 
@@ -12,6 +12,11 @@ export const Description = ({route, navigation}) => {
     const [descricao,setDescricao] = useState ('');
 
     const registerBar = async () => {
+        const token = await AsyncStorage.getItem('authToken');
+        if (!token) {
+            console.error('Token não encontrado. Verifique o login do usuário.');
+            return;
+          }
         if (!descricao) {
             Alert.alert('Erro', 'Por favor, preencha a descrição do bar.');
             return;
@@ -23,7 +28,13 @@ export const Description = ({route, navigation}) => {
                 descricao,
             };
 
-            const res = await api.post(`/Bar/registerBar`, payload);
+            const res = await axios.post('https://goobarapi-2.onrender.com/Bar/registerBar', payload, {
+                headers: {
+                  Authorization: `Bearer ${token}`, // Adiciona o token no cabeçalho
+                },
+              });
+
+
             console.log('Resposta do servidor:', res.data);
             Alert.alert('Sucesso', 'Bar registrado com sucesso!');
             navigation.navigate('selectyourimage'); // Navega para a próxima página
