@@ -37,6 +37,10 @@ export default function Login({ navigation }) {
   
       setUser({ name });
       setToken(token);
+      navigation.reset({
+        index: 3,
+        routes: [{ name: 'routes' }],
+      })
     };
 
     return (
@@ -104,11 +108,9 @@ export default function Login({ navigation }) {
                             <Text style={styles.forgotPassword}>Esqueci minha senha</Text>
                         </TouchableOpacity>
                     </View>
-                    {/* () => navigation.navigate ('Home') */}
                     <TouchableOpacity style={styles.button} onPress={handleLogin}>
                         <Text style={styles.buttonText}>Entrar</Text>
                     </TouchableOpacity>
-
                     <View style={styles.bottomText}>
                         <Text style={styles.bottomText1}>Não possui uma conta? </Text>
 

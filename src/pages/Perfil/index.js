@@ -4,16 +4,14 @@ import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'rea
 import Login from '../auth/Login';
 import { useAuth } from "../../context/AuthContext";
 
+const handleLogout = (navigation) => {
+  navigation.reset({
+    index: 0,
+    routes: [{ name: 'Login' }],
+  })
+};
+
 export function Perfil({navigation}) {
-
-  const handleLogout = async () => {
-    await AsyncStorage.removeItem("authToken");
-    await AsyncStorage.removeItem("userName");
-    setUser(null);
-    setToken(null);
-    navigation.navigate('Login');  // Redireciona para a tela de login
-  };
-
     return (
         <ScrollView style={styles.perfil}>
             <View style={styles.title}>
@@ -62,7 +60,7 @@ export function Perfil({navigation}) {
                 <View style={styles.divisor} />
                 <TouchableOpacity style={styles.perfilConfigItem}>
                   <Ionicons name={"log-out"} size={30}color={'#000'} style={{marginRight: 8}}/>
-                    <Text style={styles.perfilConfigText} onPress={() => navigation.navigate("Login")}>Sair da conta</Text>
+                    <Text style={styles.perfilConfigText} onPress={() => handleLogout(navigation)}>Sair da conta</Text>
                 </TouchableOpacity>
                 <View style={styles.divisor} />
             </View>
