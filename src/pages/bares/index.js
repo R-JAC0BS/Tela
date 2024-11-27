@@ -49,27 +49,34 @@ export const baresDescription = ({ navigation, route }) => {
     fetchBars();
   }, [id]);
 
- /* if (!barList) {
+ if (!barList) {
     return (
       <View style={Styles.loading}>
         <Text>Carregando...</Text>
       </View>
     );
-  }*/
+  }
 
 
 
 
-
-let coment = barList.comentarios
-
-console.log(coment)
-
-const comentariosRender = () => {
-    <View>
-      {}
-    </View>
-}
+const ComentariosRender = () => {
+      const coment = barList.comentarios; // Verifique se barList e comentarios estão definidos
+      if (!coment) return null; // Evita erro caso coment seja undefined ou null
+    
+      return (
+        <View>
+          {coment.map((comentario, index) => (
+            <View key={index}>
+              <View style = {Styles.comentariosBox}>
+                  <Text style = {{fontSize: 17,fontWeight: 'bold',textTransform: 'capitalize'}}>{comentario.usuario}</Text>
+                  <Text style = {{fontSize: 14}}>{comentario.comentario}</Text>
+                 </View>
+            </View>
+          ))}
+        </View>
+      );
+    };
  
  
 
@@ -130,8 +137,9 @@ style={Styles.boxDescription}
     <View style={{ height: 1.5, backgroundColor: 'black', marginVertical: 10,width: 350}} />
     
     <Text>Nota comentarios</Text>
-   
+    <ComentariosRender/>
 <TouchableOpacity style = {Styles.buttonAdd}>
+  
    <Text>+ ADICIONAR COMENTARIO</Text>
 </TouchableOpacity>
 <View style = {{width: 100, height: 30}}></View>
