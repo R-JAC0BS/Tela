@@ -27,7 +27,7 @@ export default function Register({ navigation }) {
   };
 
   const handleRegister = async () => {
-    const { erro, data, mensagem } = await register(email, password, username, telefone);
+    const { erro, data, mensagem } = await register(username, telefone, email, password);
 
     if (erro) {
       Alert.alert(mensagem);
@@ -38,6 +38,10 @@ export default function Register({ navigation }) {
 
     setUser({ name });
     setToken(token);
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'login' }],
+    })
   };
 
   return (

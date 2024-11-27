@@ -48,13 +48,13 @@ export const login = async (email, password) => {
   }
 }
 
-export const register = async (email, password) => {
+export const register = async (username, telefone, email, password) => {
   try {
-    const response = await api.post("/auth/register", { email, password });
+    const response = await api.post("/auth/register", { username, telefone, email, password });
 
     await AsyncStorage.setItem(
       "@userCredentials",
-      JSON.stringify({ email, password })
+      JSON.stringify({ username, telefone, email, password })
     );
 
     return { erro: false, data: response.data };
