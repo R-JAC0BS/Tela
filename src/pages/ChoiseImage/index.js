@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-
-export const ChoiseImage = ({navigation,route}) => {
-
+ 
+export const ChoiseImage = ({navigation}) => {
+ 
     const [image, setImage] = useState(null);
-      const [remove,setRemove] = useState (false)
-  const [UUID] = route.params;
+    const [remove,setRemove] = useState (false)
+ 
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -21,55 +21,20 @@ export const ChoiseImage = ({navigation,route}) => {
       }
     })();
      }, []);
-
-     const uploadImage = async () => {
-      if (!image) {
-          Alert.alert('Erro', 'Por favor, selecione uma imagem antes de enviar.');
-          return;
-      }
-  
-      try {
-          const formData = new FormData();
-          formData.append('file', {
-              uri: image,
-              name: 'image.jpg',
-              type: 'image/jpeg',
-          });
-  
-          const response = await fetch('https://sua-api.com/endpoint/upload', {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'multipart/form-data',
-                  Authorization: `Bearer SEU_TOKEN`, // Substitua SEU_TOKEN pelo token real
-              },
-              body: formData,
-          });
-  
-          if (response.ok) {
-              Alert.alert('Sucesso', 'Imagem enviada com sucesso!');
-          } else {
-              const error = await response.json();
-              Alert.alert('Erro', error.message || 'Erro ao enviar a imagem.');
-          }
-      } catch (error) {
-          Alert.alert('Erro', 'Não foi possível enviar a imagem. Tente novamente.');
-          console.error('Erro no upload:', error);
-      }
-  };
-
+ 
      const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.Images,
           allowsEditing: true,
           quality: 1,
         });
-    
+   
         if (!result.canceled) {
-          setImage(result.assets[0].uri); 
+          setImage(result.assets[0].uri);
           setRemove (true)
         }
       };
-    
+   
       const removeImage = () => {
         if (image != null){
             setImage (null)
@@ -77,7 +42,7 @@ export const ChoiseImage = ({navigation,route}) => {
         }
       }
     return (
-    
+   
         <View style = {styles.bodyContainer}>
              <View style = {styles.bodyContainer}>
             <View style = {styles.TextContainer}>
@@ -86,8 +51,8 @@ export const ChoiseImage = ({navigation,route}) => {
                 <View style = {styles.ImagePainel}>
                 <TouchableHighlight style = {styles.touch} onPress={pickImage}>
              <View style = {styles.ButtonPlus}>
-             <AntDesign name="plus" size={33} color="black" /> 
-                     <Text style = {{color: 'black', fontSize: 20,fontWeight: 'bold' }}> 
+             <AntDesign name="plus" size={33} color="black" />
+                     <Text style = {{color: 'black', fontSize: 20,fontWeight: 'bold' }}>
                      Adicionar foto
                      </Text>
               </View>
@@ -104,7 +69,7 @@ export const ChoiseImage = ({navigation,route}) => {
                >
                  <Text style={styles.buttonText}><FontAwesome5 name="trash-alt" size={24} color="white" /></Text>
                </TouchableHighlight>
-              
+             
                )}
                 </View>
              
@@ -118,11 +83,11 @@ export const ChoiseImage = ({navigation,route}) => {
              </TouchableHighlight>
              <TouchableHighlight style = {{left: 15}}>
              <View style={styles.button }>
-                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={() => navigation.navigate('location')}>Avançar</Text>
+                     <Text style = {{color: 'white', fontSize: 20,fontWeight: 'bold'}}onPress={() => navigation.navigate('Location')}>Avançar</Text>
               </View>
              </TouchableHighlight>
             </View>
-    
+   
         </View>
       )
     };
@@ -132,7 +97,7 @@ export const ChoiseImage = ({navigation,route}) => {
                 flex: 1,
                 backgroundColor: '#FBF7ED',
                 alignItems: 'center',
-            
+           
             },
             TextContainer :{
                 marginTop: 90,
@@ -143,7 +108,7 @@ export const ChoiseImage = ({navigation,route}) => {
             textinput : {
                 backgroundColor: 'white',
                 borderRadius: 10,
-                borderWidth: 3, 
+                borderWidth: 3,
                 borderColor: 'black',
                 height: 110
             },
@@ -157,7 +122,7 @@ export const ChoiseImage = ({navigation,route}) => {
             },
             nav : {
                 elevation: 30,
-                flexDirection: 'row', 
+                flexDirection: 'row',
                 width: '100%',
                 height: 75,
                 backgroundColor: 'white',
@@ -168,7 +133,7 @@ export const ChoiseImage = ({navigation,route}) => {
                 paddingLeft: 40
             }
             ,
-
+ 
             button : {
                 backgroundColor: 'black',
                 width: 120,
@@ -178,7 +143,7 @@ export const ChoiseImage = ({navigation,route}) => {
                 borderRadius: 8
             },
             touch : {
-          
+         
             },
             ButtonPlus : {
                 width: 165,
@@ -201,16 +166,16 @@ export const ChoiseImage = ({navigation,route}) => {
                 borderRadius: 100,
                 justifyContent: 'center',
                 alignItems: 'center',
-            
-            }, 
+           
+            },
             trash : {
                 width: 350,
                 justifyContent: 'center',
                 alignItems: 'center',
                 elevation: 20
             }
-    
+   
         }
     )
-
+ 
 export default ChoiseImage;

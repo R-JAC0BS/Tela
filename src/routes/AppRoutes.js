@@ -72,6 +72,16 @@ const AppNavigator = () => {
   return (
     <AppStack.Navigator>
       {/* Rotas principais */}
+      <AuthStack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
+      <AuthStack.Screen
+        name="Register"
+        component={Register}
+        options={{ headerShown: false }}
+      />
       <AppStack.Screen
         name="routes"
         component={Routes} // Suas tabs: Home e Perfil
