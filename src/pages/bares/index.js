@@ -38,7 +38,6 @@ export const baresDescription = ({ navigation, route }) => {
   }, [id]);
 
   if (!barList) {
-    // Enquanto os dados não são carregados, exibir uma mensagem
     return (
       <View style={Styles.loading}>
         <Text>Carregando...</Text>
@@ -52,28 +51,7 @@ export const baresDescription = ({ navigation, route }) => {
         <Ionicons name="arrow-back" size={24} color="black" />
       </TouchableOpacity>
 
-      <View style={Styles.boxImage}>
-        {barList.imagemurl ? (
-          <Image source={{ uri: barList.imagemurl }} style={Styles.cardImage} />
-        ) : (
-          <Text style={{ textAlign: 'center', marginVertical: 20 }}>Imagem não disponível</Text>
-        )}
-      </View>
-
-      <View style={Styles.boxInformation}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold' }}>
-          {barList.nome || 'Nome do bar não disponível'}
-        </Text>
-        <Text style={{ marginTop: 10, fontSize: 16 }}>
-          {barList.descricao || 'Descrição não disponível'}
-        </Text>
-        <Text style={{ marginTop: 10, fontSize: 14 }}>
-          Avaliação: {barList.avaliacao || 'N/A'}
-        </Text>
-        <Text style={{ marginTop: 5, fontSize: 14 }}>
-          Número de Avaliações: {barList.numerodeavaliacao || 'N/A'}
-        </Text>
-      </View>
+     
     </ScrollView>
   );
 };

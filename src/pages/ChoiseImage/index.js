@@ -6,11 +6,11 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
-export const ChoiseImage = ({navigation}) => {
+export const ChoiseImage = ({navigation,route}) => {
 
     const [image, setImage] = useState(null);
-    const [remove,setRemove] = useState (false)
-
+      const [remove,setRemove] = useState (false)
+  const [UUID] = route.params;
   useEffect(() => {
     (async () => {
       if (Platform.OS !== 'web') {
@@ -21,6 +21,41 @@ export const ChoiseImage = ({navigation}) => {
       }
     })();
      }, []);
+
+     const uploadImage = async () => {
+      if (!image) {
+          Alert.alert('Erro', 'Por favor, selecione uma imagem antes de enviar.');
+          return;
+      }
+  
+      try {
+          const formData = new FormData();
+          formData.append('file', {
+              uri: image,
+              name: 'image.jpg',
+              type: 'image/jpeg',
+          });
+  
+          const response = await fetch('https://sua-api.com/endpoint/upload', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'multipart/form-data',
+                  Authorization: `Bearer SEU_TOKEN`, // Substitua SEU_TOKEN pelo token real
+              },
+              body: formData,
+          });
+  
+          if (response.ok) {
+              Alert.alert('Sucesso', 'Imagem enviada com sucesso!');
+          } else {
+              const error = await response.json();
+              Alert.alert('Erro', error.message || 'Erro ao enviar a imagem.');
+          }
+      } catch (error) {
+          Alert.alert('Erro', 'Não foi possível enviar a imagem. Tente novamente.');
+          console.error('Erro no upload:', error);
+      }
+  };
 
      const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({

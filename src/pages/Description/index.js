@@ -38,7 +38,7 @@ export const Description = ({route, navigation}) => {
             setUUID (res.data)
             console.log('Resposta do servidor:', res.data);
             Alert.alert('Sucesso', 'Bar registrado com sucesso!');
-            navigation.navigate('selectyourimage'); // Navega para a próxima página
+            navigation.navigate('ChoiseImage'); // Navega para a próxima página
         } catch (err) {
             console.error(err);
             Alert.alert('Erro', 'Não foi possível registrar o bar.');

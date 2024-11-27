@@ -11,7 +11,7 @@ export function Perfil({navigation}) {
     await AsyncStorage.removeItem("userName");
     setUser(null);
     setToken(null);
-    navigation.navigate('Login');  // Redireciona para a tela de login
+    navigation.navigate('Auth', { screen: 'Login' });  // Redireciona para a tela de login
   };
 
     return (
@@ -62,9 +62,12 @@ export function Perfil({navigation}) {
                 <View style={styles.divisor} />
                 <TouchableOpacity style={styles.perfilConfigItem}>
                   <Ionicons name={"log-out"} size={30}color={'#000'} style={{marginRight: 8}}/>
-                    <Text style={styles.perfilConfigText} onPress={() => navigation.navigate("Login")}>Sair da conta</Text>
+                    <Text style={styles.perfilConfigText} onPress={() => navigation.navigate('Auth', { screen: 'Login' })}>Sair da conta</Text>
                 </TouchableOpacity>
                 <View style={styles.divisor} />
+            </View>
+            <View style = {styles.space}>
+
             </View>
         </ScrollView>
       );
@@ -177,4 +180,7 @@ export function Perfil({navigation}) {
         fontWeight: 'bold',
         fontSize: 16
       },
+      space : {
+        height: 150
+      }
     });
