@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
 import Login from '../auth/Login';
 import { useAuth } from "../../context/AuthContext";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const handleLogout = (navigation) => {
   navigation.reset({
